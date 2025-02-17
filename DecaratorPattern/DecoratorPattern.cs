@@ -20,28 +20,44 @@ public class Marine : IMarine
 
 public class MarineWeaponUpgrade : IMarine
 {
-    private IMarine marine;
+    private IMarine _marine;
 
     public MarineWeaponUpgrade(IMarine marine)
     {
-        marine.Damage += 1;
+        _marine = marine;
     }
 
-    public int Damage { get; set; }
+    public int Damage
+    {
+        get { return _marine.Damage + 1; }
+        set { _marine.Damage = value; }
+    }
 
-    public int Armor { get; set; }
+    public int Armor
+    {
+        get { return _marine.Armor; }
+        set { _marine.Armor = value; }
+    }
 }
 
 public class MarineArmorUpgrade : IMarine
 {
-    private IMarine marine;
+    private IMarine _marine;
 
     public MarineArmorUpgrade(IMarine marine)
     {
-        marine.Armor += 1;
+        _marine = marine;
     }
 
-    public int Damage { get; set; }
+    public int Damage
+    {
+        get { return _marine.Damage; }
+        set { _marine.Damage = value; }
+    }
 
-    public int Armor { get; set; }
+    public int Armor
+    {
+        get { return _marine.Armor + 1; }
+        set { _marine.Armor = value; }
+    }
 }
