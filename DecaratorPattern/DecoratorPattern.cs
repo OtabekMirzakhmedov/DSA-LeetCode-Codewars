@@ -24,7 +24,7 @@ public class MarineWeaponUpgrade : IMarine
 
     public MarineWeaponUpgrade(IMarine marine)
     {
-        
+        marine.Damage += 1;
     }
 
     public int Damage { get; set; }
@@ -38,7 +38,7 @@ public class MarineArmorUpgrade : IMarine
 
     public MarineArmorUpgrade(IMarine marine)
     {
-        
+        marine.Armor += 1;
     }
 
     public int Damage { get; set; }
