@@ -2,7 +2,7 @@ using System;
 using NUnit.Framework;
 
 [TestFixture]
-public class KataTest
+public class DecoratorPatternTests
 {
     [Test, Order(1)]
     public void _0_SingleUpgrade()
