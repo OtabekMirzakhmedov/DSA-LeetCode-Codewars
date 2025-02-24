@@ -12,7 +12,7 @@ public class PersonEventArgs : EventArgs
 
 public class Publisher
 {
-    public event EventHandler<PersonEventArgs> ContactNotify;
+    public event EventHandler<PersonEventArgs>? ContactNotify;
 
     public void CountMessages(List<string> peopleList)
     {
