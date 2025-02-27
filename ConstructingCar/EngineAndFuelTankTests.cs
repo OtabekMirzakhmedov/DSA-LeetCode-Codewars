@@ -58,4 +58,91 @@ public class EngineAndFuelTankTests
 
         Assert.That(car.fuelTankDisplay.FillLevel, Is.EqualTo(45), "Wrong fuel tank fill level!");
     }
+    [Test, Order(6)] 
+    public void TestStartSpeed()
+  {
+    var car = new Car();
+
+    car.EngineStart();
+            
+    Assert.That(car.drivingInformationDisplay.ActualSpeed, Is.EqualTo(0), "Wrong actual speed!");
+  }
+  
+  [Test, Order(7)]
+  public void TestFreeWheelSpeed()
+  {
+    var car = new Car();
+
+    car.EngineStart();
+
+    Enumerable.Range(0, 10).ToList().ForEach(s => car.Accelerate(100));
+
+    Assert.That(car.drivingInformationDisplay.ActualSpeed, Is.EqualTo(100), "Wrong actual speed!");
+
+    car.FreeWheel();
+    car.FreeWheel();
+    car.FreeWheel();
+
+    Assert.That(car.drivingInformationDisplay.ActualSpeed, Is.EqualTo(97), "Wrong actual speed!");
+  }
+        
+  [Test, Order(8)]
+  public void TestAccelerateBy10()
+  {
+    var car = new Car();
+
+    car.EngineStart();
+
+    Enumerable.Range(0, 10).ToList().ForEach(s => car.Accelerate(100));
+
+    car.Accelerate(160);
+    Assert.That(car.drivingInformationDisplay.ActualSpeed, Is.EqualTo(110), "Wrong actual speed!");
+    car.Accelerate(160);
+    Assert.That(car.drivingInformationDisplay.ActualSpeed, Is.EqualTo(120), "Wrong actual speed!");
+    car.Accelerate(160);
+    Assert.That(car.drivingInformationDisplay.ActualSpeed, Is.EqualTo(130), "Wrong actual speed!");
+    car.Accelerate(160);
+    Assert.That(car.drivingInformationDisplay.ActualSpeed, Is.EqualTo(140), "Wrong actual speed!");
+    car.Accelerate(145);
+    Assert.That(car.drivingInformationDisplay.ActualSpeed, Is.EqualTo(145), "Wrong actual speed!");
+  }        
+  
+  [Test, Order(9)]
+  public void TestBraking()
+  {
+    var car = new Car();
+
+    car.EngineStart();
+
+    Enumerable.Range(0, 10).ToList().ForEach(s => car.Accelerate(100));
+
+    car.BrakeBy(20);
+
+    Assert.That(car.drivingInformationDisplay.ActualSpeed, Is.EqualTo(90), "Wrong actual speed!");
+
+    car.BrakeBy(10);
+
+    Assert.That(car.drivingInformationDisplay.ActualSpeed, Is.EqualTo(80), "Wrong actual speed!");
+  }
+  
+  [Test, Order(10)]
+  public void TestConsumptionSpeedUpTo30()
+  {
+    var car = new Car(1, 20);
+
+    car.EngineStart();
+
+    car.Accelerate(30);
+    car.Accelerate(30);
+    car.Accelerate(30);
+    car.Accelerate(30);
+    car.Accelerate(30);
+    car.Accelerate(30);
+    car.Accelerate(30);
+    car.Accelerate(30);
+    car.Accelerate(30);
+    car.Accelerate(30);
+
+    Assert.That(car.fuelTankDisplay.FillLevel, Is.EqualTo(0.98), "Wrong fuel tank fill level!");
+  }
 }
