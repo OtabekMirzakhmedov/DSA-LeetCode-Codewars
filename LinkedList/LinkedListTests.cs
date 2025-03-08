@@ -32,4 +32,29 @@ public class LinkedListTests
         Assert.That(Node.BuildOneTwoThree().Next.Next.Data, Is.EqualTo(3), "Third node should should have 3 as data.");
         Assert.That(Node.BuildOneTwoThree().Next.Next.Next, Is.Null, "Third node should be the tail of the linked list");
     }
+    
+    [Test, Description("tests for counting the length of a linked list.")]
+    [Order(4)]
+    public void LengthTest()
+    {
+        Node list = Node.BuildOneTwoThree();
+        Assert.That(Node.Length(null), Is.EqualTo(0), "Length of null list should be zero.");
+        Assert.That(Node.Length(new Node(99)), Is.EqualTo(1), "Length of single node list should be one.");
+        Assert.That(Node.Length(list), Is.EqualTo(3), "Length of the three node list should be three.");
+    }
+    
+    [Test, Description("tests for counting occurences of data that satisfies a condition.")]
+    [Order(5)]
+    public void CountTest()
+    {
+        Node list = Node.BuildOneTwoThree();
+        Assert.That(Node.Count(list, value => value == 1), Is.EqualTo(1), "list should only contain one 1.");
+        Assert.That(Node.Count(list, value => value == 2), Is.EqualTo(1), "list should only contain one 2.");
+        Assert.That(Node.Count(list, value => value == 3), Is.EqualTo(1), "list should only contain one 3.");
+        Assert.That(Node.Count(list, value => value == 99), Is.EqualTo(0), "list should return zero for integer not found in list.");
+        Assert.That(Node.Count(null, value => value == 1), Is.EqualTo(0), "null list should always return count of zero.");
+      
+        Assert.That(Node.Count(list, value => value % 2 != 0), Is.EqualTo(2), "list should contain two odd numbers.");
+        Assert.That(Node.Count(list, value => value % 2 == 0), Is.EqualTo(1), "list should contain one even number.");
+    }
 }

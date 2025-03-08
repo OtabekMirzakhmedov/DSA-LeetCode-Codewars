@@ -45,4 +45,21 @@ public class Node
 
         return result;
     }
+    
+    public static int Length(Node? head)
+    {
+        int length = 0;
+        while (head != null)
+        {
+            length += 1;
+            head = head.Next;
+        }
+
+        return length;
+    }
+  
+    public static int Count(Node head, Predicate<int> func)
+    {
+        throw new NotImplementedException();
+    }
 }
