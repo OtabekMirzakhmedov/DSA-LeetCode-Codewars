@@ -58,8 +58,19 @@ public class Node
         return length;
     }
   
-    public static int Count(Node head, Predicate<int> func)
+    public static int Count(Node? head, Predicate<int> func)
     {
-        throw new NotImplementedException();
+        int count = 0;
+        while (head != null)
+        {
+            if (func(head.Data))
+            {
+                count += 1;
+            }
+
+            head = head.Next;
+        }
+
+        return count;
     }
 }
