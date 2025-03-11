@@ -73,4 +73,21 @@ public class Node
 
         return count;
     }
+    
+    public static Node GetNth(Node node, int index)
+    {
+        int indexCount = 0;
+        while (node != null && indexCount <= index)
+        {
+            if (indexCount == index)
+            {
+                return node;
+            }
+
+            indexCount++;
+            node = node.Next;
+        }
+
+        throw new ArgumentException();
+    }
 }

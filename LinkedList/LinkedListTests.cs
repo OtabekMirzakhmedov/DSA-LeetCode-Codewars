@@ -57,4 +57,18 @@ public class LinkedListTests
         Assert.That(Node.Count(list, value => value % 2 != 0), Is.EqualTo(2), "list should contain two odd numbers.");
         Assert.That(Node.Count(list, value => value % 2 == 0), Is.EqualTo(1), "list should contain one even number.");
     }
+    
+    [Test, Description("tests for getting the Nth node in a linked list.")]
+    [Order(5)] 
+    public void GetNthTest()
+    {
+        Node list = Node.BuildOneTwoThree();
+      
+        Assert.That(Node.GetNth(list, 0).Data, Is.EqualTo(1), "First node should be located at index 0.");
+        Assert.That(Node.GetNth(list, 1).Data, Is.EqualTo(2), "Second node should be located at index 1.");
+        Assert.That(Node.GetNth(list, 2).Data, Is.EqualTo(3), "Third node should be located at index 2.");
+        Assert.Throws<ArgumentException>(() => Node.GetNth(list, 3), "Invalid index value should throw an exception.");
+        Assert.Throws<ArgumentException>(() => Node.GetNth(list, 100), "Invalid index value should throw an exception.");
+        Assert.Throws<ArgumentException>(() => Node.GetNth(null, 0), "Null linked list should throw an exception.");
+    }
 }
