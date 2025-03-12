@@ -1,4 +1,5 @@
 using System.Text;
+using ArgumentOutOfRangeException = System.ArgumentOutOfRangeException;
 
 namespace Codewars.LinkedList;
 
@@ -12,7 +13,7 @@ public class Node
         Data = data;
         Next = next;
     }
-    
+
     public static string Stringify(Node? list)
     {
         StringBuilder result = new StringBuilder("");
@@ -23,6 +24,7 @@ public class Node
             result.Append(" -> ");
             list = list.Next;
         }
+
         result.Append("null");
 
         return result.ToString();
@@ -45,7 +47,7 @@ public class Node
 
         return result;
     }
-    
+
     public static int Length(Node? head)
     {
         int length = 0;
@@ -57,7 +59,7 @@ public class Node
 
         return length;
     }
-  
+
     public static int Count(Node? head, Predicate<int> func)
     {
         int count = 0;
@@ -73,7 +75,7 @@ public class Node
 
         return count;
     }
-    
+
     public static Node GetNth(Node node, int index)
     {
         int indexCount = 0;
@@ -89,5 +91,43 @@ public class Node
         }
 
         throw new ArgumentException();
+    }
+
+    public static Node InsertNth(Node head, int index, int data)
+    {
+        Node insertingNode = new Node(data);
+        
+        if (index == 0)
+        {
+            insertingNode.Next = head;
+            return insertingNode;
+        }
+        
+        if (index < 0)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+        
+        Node currentNode = head;
+        
+        for (int i = 0; i < index-1; i++)
+        {
+            if (currentNode == null)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            currentNode = currentNode.Next;
+        }
+        
+        if (currentNode == null)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+        
+        insertingNode.Next = currentNode.Next;
+        currentNode.Next = insertingNode;
+
+        return head;
     }
 }
