@@ -126,4 +126,12 @@ public class LinkedListTests
       Assert.Throws<ArgumentOutOfRangeException>(() => Node.InsertNth(Node.BuildOneTwoThree(), 4, 23), "Invalid index value should throw ArugmentException");
       Assert.Throws<ArgumentOutOfRangeException>(() => Node.InsertNth(Node.BuildOneTwoThree(), -4, 23), "Invalid index value should throw ArugmentException");
     }
+    
+    [Test, Description("should pass the example tests provided in the Description"), Order(12)]
+    public void ParseTest()
+    {
+        Assert.That(Node.Parse("1 -> 2 -> 3 -> null"), Is.EqualTo(new Node(1, new Node(2, new Node(3)))));
+        Assert.That(Node.Parse("0 -> 1 -> 4 -> 9 -> 16 -> null"), Is.EqualTo(new Node(0, new Node(1, new Node(4, new Node(9, new Node(16)))))));
+        Assert.That(Node.Parse("null"), Is.Null);
+    }
 }
