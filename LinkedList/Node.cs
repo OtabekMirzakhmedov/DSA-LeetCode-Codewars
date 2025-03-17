@@ -3,7 +3,7 @@ using ArgumentOutOfRangeException = System.ArgumentOutOfRangeException;
 
 namespace Codewars.LinkedList;
 
-public class Node
+public class Node : Object
 {
     public int Data { get; private set; }
     public Node Next { get; private set; }
@@ -12,6 +12,28 @@ public class Node
     {
         Data = data;
         Next = next;
+    }
+    
+    public override bool Equals(Object obj)
+    {
+        // Check for null values and compare run-time types.
+        if (obj == null || GetType() != obj.GetType()) { return false; }
+  
+        return this.ToString() == obj.ToString();
+    }
+    
+    public override string ToString()
+    {
+        List<int> result = new List<int>();
+        Node curr = this;
+    
+        while (curr != null)
+        {
+            result.Add(curr.Data);
+            curr = curr.Next;
+        }
+    
+        return String.Join(" -> ", result) + " -> null";
     }
 
     public static string Stringify(Node? list)
@@ -129,5 +151,25 @@ public class Node
         currentNode.Next = insertingNode;
 
         return head;
+    }
+    
+    public static Node? Parse(string nodes)
+    {
+        if (nodes == "null")
+        {
+            return null;
+        }
+        var nodeList = nodes.Split(" -> ");
+        return ParseHelper(nodeList);
+    }
+
+    public static Node? ParseHelper(string[] nodes)
+    {
+        if (nodes[0] == "null")
+            return null;
+    
+        Node current = new Node(int.Parse(nodes[0]));
+        current.Next = nodes.Length > 1 ? ParseHelper(nodes[1..]) : null;
+        return current;
     }
 }
