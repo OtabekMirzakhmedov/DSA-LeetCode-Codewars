@@ -8,8 +8,8 @@ public class Program
     {
         int[] nums = { 64, 25, 12, 22, 11 };
         
-        var sorter = new HeapSort();
-        int[] sorted = sorter.MinSort(nums);
+        var sorter = new MergeSort();
+        int[] sorted = sorter.Sort(nums);
         
         Console.WriteLine("Before: 64, 25, 12, 22, 11");
         Console.WriteLine("After:  " + string.Join(", ", sorted));
