@@ -8,7 +8,7 @@ public class Program
     {
         int[] nums = { 64, 25, 12, 22, 11 };
         
-        var sorter = new MergeSort();
+        var sorter = new QuickSort();
         int[] sorted = sorter.Sort(nums);
         
         Console.WriteLine("Before: 64, 25, 12, 22, 11");
