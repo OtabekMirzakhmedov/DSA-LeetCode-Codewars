@@ -1,3 +1,4 @@
+using Codewars.DivideAndConquer;
 using Codewars.Sorting;
 
 namespace Codewars;
@@ -6,13 +7,13 @@ public class Program
 {
     public static void Main2()
     {
-        int[] nums = { 64, 25, 12, 22, 11 };
+        int[] nums = { -17, 5, 3, -10, 6, 1, 4, -3, 8, 1, -13, 4 };
         
-        var sorter = new QuickSort();
-        int[] sorted = sorter.Sort(nums);
+        var DaC = new LargestSubrange();
+        int largestSubrange = DaC.MaxSubArray(nums);
         
-        Console.WriteLine("Before: 64, 25, 12, 22, 11");
-        Console.WriteLine("After:  " + string.Join(", ", sorted));
+        Console.WriteLine("Before: -17, 5, 3, -10, 6, 1, 4, -3, 8, 1, -13, 4");
+        Console.WriteLine("After:  " + largestSubrange);
 
 
     }
