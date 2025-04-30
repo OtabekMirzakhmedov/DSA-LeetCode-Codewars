@@ -1,19 +1,17 @@
-using Codewars.DivideAndConquer;
-using Codewars.Sorting;
-
 namespace Codewars;
 
 public class Program
 {
     public static void Main2()
     {
-        int[] nums1 = { 1, 3};
-        int[] nums2 = { 2 };
-
-        var closestPair = new FindMedianSortedArray();
-        float closestDistance = closestPair.CalculateMedian(nums1, nums2);
-
-        Console.WriteLine(closestDistance);
+        int[] rootp = { 1,2,2,3,4,4,3};
+        int [] rootq = { 1,2,2,3,4,4,3};
+        BinaryTree binaryTree = new BinaryTree();
+        BinaryTree.TreeNode RootTreep = binaryTree.CreateBinaryTree(rootp);
+        BinaryTree.TreeNode RootTreeq = binaryTree.CreateBinaryTree(rootq);
+        BreadthFirstSearch.BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch.BreadthFirstSearch();
+        var res = breadthFirstSearch.IsSameTree(RootTreep, RootTreeq);
+        breadthFirstSearch.BFS(RootTreep);
 
 
     }
