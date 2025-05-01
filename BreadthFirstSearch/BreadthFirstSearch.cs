@@ -43,36 +43,28 @@ public class BreadthFirstSearch
             return;
         }
 
-        // Dictionary to keep track of node states and parents
         Dictionary<BinaryTree.TreeNode, NodeState> state = new Dictionary<BinaryTree.TreeNode, NodeState>();
         Dictionary<BinaryTree.TreeNode, BinaryTree.TreeNode> parent = new Dictionary<BinaryTree.TreeNode, BinaryTree.TreeNode>();
         
-        // Initialize the root
         state[root] = NodeState.Discovered;
         parent[root] = null; // Root has no parent
         
-        // Create queue for BFS
         Queue<BinaryTree.TreeNode> queue = new Queue<BinaryTree.TreeNode>();
         queue.Enqueue(root);
         
-        // For collecting the traversal result
         List<int> traversalResult = new List<int>();
         
         while (queue.Count > 0)
         {
-            // Dequeue a node
             BinaryTree.TreeNode current = queue.Dequeue();
             
-            // Process current node
             Console.WriteLine($"Processing node: {current.val}");
             traversalResult.Add(current.val);
             
-            // Process left child if it exists
             if (current.left != null)
             {
                 Console.WriteLine($"Examining edge: ({current.val} -> {current.left.val})");
                 
-                // Initialize state if we haven't seen this node before
                 if (!state.ContainsKey(current.left))
                 {
                     state[current.left] = NodeState.Undiscovered;
@@ -86,12 +78,10 @@ public class BreadthFirstSearch
                 }
             }
             
-            // Process right child if it exists
             if (current.right != null)
             {
                 Console.WriteLine($"Examining edge: ({current.val} -> {current.right.val})");
                 
-                // Initialize state if we haven't seen this node before
                 if (!state.ContainsKey(current.right))
                 {
                     state[current.right] = NodeState.Undiscovered;
@@ -104,16 +94,13 @@ public class BreadthFirstSearch
                     queue.Enqueue(current.right);
                 }
             }
-            
-            // Mark current node as processed
+
             state[current] = NodeState.Processed;
         }
         
-        // Print the traversal result
         Console.WriteLine("\nBFS Traversal Result:");
         Console.WriteLine(string.Join(", ", traversalResult));
         
-        // Print the BFS tree (parent relationships)
         Console.WriteLine("\nBFS Tree (Parent Relationships):");
         foreach (var entry in parent)
         {
@@ -122,7 +109,6 @@ public class BreadthFirstSearch
         }
     }
     
-    // A simpler implementation of BFS for level-order traversal
     public List<int> LevelOrderTraversal(BinaryTree.TreeNode root)
     {
         List<int> result = new List<int>();
