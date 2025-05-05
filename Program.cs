@@ -13,6 +13,9 @@ public class Program
         DepthFirstSearch.DeapthFirstSearch dfs = new DeapthFirstSearch();
         dfs.InorderTraversal(RootTreep);
 
+        FindPath fp = new FindPath();
+        fp.ValidPath(6, [[0,1],[0,2],[3,5],[5,4],[4,3]], 0, 5);
+
 
     }
 
